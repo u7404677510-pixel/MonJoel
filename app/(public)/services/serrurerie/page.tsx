@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Phone, ArrowRight, Key, DoorOpen, ShieldCheck, Lock, CheckCircle, Clock, Star } from 'lucide-react';
+import { Phone, ArrowRight, Key, DoorOpen, ShieldCheck, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

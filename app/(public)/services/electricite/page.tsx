@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Phone, ArrowRight, Plug, Zap, Lightbulb, Cable, CheckCircle, Clock, Star } from 'lucide-react';
+import { Phone, ArrowRight, Plug, Zap, Lightbulb, Cable } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

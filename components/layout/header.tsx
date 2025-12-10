@@ -12,7 +12,6 @@ import {
   ChevronDown,
   Key,
   DoorOpen,
-  Shield,
   ShieldCheck,
   Wrench,
   Clock,
