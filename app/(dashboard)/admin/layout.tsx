@@ -12,11 +12,8 @@ import {
   Settings,
   Menu,
   LogOut,
-  Bell,
   ChevronDown,
   Globe,
-  Palette,
-  MessageSquare,
   X,
 } from 'lucide-react';
 import Image from 'next/image';
