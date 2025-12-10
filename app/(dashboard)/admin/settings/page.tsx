@@ -207,13 +207,14 @@ export default function AdminSettingsPage() {
   }, [settings, originalSettings]);
 
   const settingsByCategory = React.useMemo(() => {
-    return settings.reduce((acc, setting) => {
-      if (!acc[setting.category]) {
-        acc[setting.category] = [];
+    return settings.reduce<Record<string, SiteSetting[]>>((acc, setting) => {
+      const category = setting.category;
+      if (!acc[category]) {
+        acc[category] = [];
       }
-      acc[setting.category].push(setting);
+      acc[category]!.push(setting);
       return acc;
-    }, {} as Record<string, SiteSetting[]>);
+    }, {});
   }, [settings]);
 
   const categories = Object.keys(CATEGORY_INFO);
