@@ -10,13 +10,9 @@ import {
   ArrowRight,
   Star,
   Zap,
-  Lock,
   Key,
   DoorOpen,
   ShieldCheck,
-  Camera,
-  MessageSquare,
-  FileText,
   Truck,
   MapPin,
 } from 'lucide-react';
