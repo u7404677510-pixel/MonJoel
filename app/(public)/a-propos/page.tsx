@@ -1,13 +1,9 @@
 import type { Metadata } from 'next';
 import {
-  Heart,
   Shield,
   Eye,
   Zap,
-  Users,
   Lightbulb,
-  Target,
-  ArrowRight,
   CheckCircle,
   Quote,
 } from 'lucide-react';
