@@ -74,8 +74,8 @@ export async function POST(request: Request) {
         requestId: dbRequest.id,
         lockType: problemType,
         confidence: 0.85, // Mock confidence
-        pricingJson: pricing,
-        etaJson: eta,
+        pricingJson: JSON.parse(JSON.stringify(pricing)),
+        etaJson: JSON.parse(JSON.stringify(eta)),
         riskFlags: isUrgent ? ['urgent'] : [],
         aiNotes: `Diagnostic automatique pour: ${problemType}. Analyse basée sur la description fournie.`,
       },
