@@ -17,9 +17,6 @@ export async function POST(request: Request) {
 
     const { name, email, phone, subject, message, consentRgpd } = validation.data;
 
-    // Get UTM params from headers or cookies if available
-    const sourceUtm = null; // TODO: Extract from request headers
-
     // Create contact submission
     const submission = await prisma.contactSubmission.create({
       data: {
@@ -29,7 +26,7 @@ export async function POST(request: Request) {
         subject,
         message,
         consentRgpd,
-        sourceUtm,
+        // sourceUtm: TODO - Extract from request headers/cookies
       },
     });
 
