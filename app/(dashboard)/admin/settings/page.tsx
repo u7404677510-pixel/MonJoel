@@ -281,7 +281,8 @@ export default function AdminSettingsPage() {
             const info = CATEGORY_INFO[category];
             if (!info) return null;
             const Icon = info.icon;
-            const hasSettings = settingsByCategory[category]?.length > 0;
+            const categorySettingsList = settingsByCategory[category];
+            const hasSettings = categorySettingsList && categorySettingsList.length > 0;
             if (!hasSettings && category !== activeTab) return null;
             return (
               <TabsTrigger 
