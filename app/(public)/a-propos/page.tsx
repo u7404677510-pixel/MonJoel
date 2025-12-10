@@ -8,7 +8,6 @@ import {
   Quote,
 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Section, SectionHeader, PageHeader } from '@/components/layout/section';
