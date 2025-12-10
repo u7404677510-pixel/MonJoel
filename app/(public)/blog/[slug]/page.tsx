@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, User, Clock, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Section } from '@/components/layout/section';
 import { CtaSection } from '@/components/shared/cta-section';
