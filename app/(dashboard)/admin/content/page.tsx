@@ -68,8 +68,6 @@ const contentSections = [
 ];
 
 export default function AdminContentPage() {
-  const [searchQuery, setSearchQuery] = React.useState('');
-
   return (
     <div className="space-y-8">
       {/* Header */}
