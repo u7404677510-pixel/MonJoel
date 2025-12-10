@@ -27,9 +27,6 @@ export async function POST(request: Request) {
       urgency,
     } = validation.data;
 
-    // Get UTM params from headers or cookies if available
-    const sourceUtm = null; // TODO: Extract from request headers
-
     // Determine channel based on urgency
     const channel = urgency === 'very_urgent' ? 'DIRECT' : 'WEB';
 
@@ -44,7 +41,7 @@ export async function POST(request: Request) {
         contactName,
         contactPhone,
         contactEmail: contactEmail ?? null,
-        sourceUtm,
+        // sourceUtm: TODO - Extract from request headers/cookies
       },
     });
 
