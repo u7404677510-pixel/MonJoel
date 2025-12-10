@@ -16,6 +16,11 @@ import {
   ShieldCheck,
   Wrench,
   Clock,
+  Plug,
+  Droplets,
+  Zap,
+  Lightbulb,
+  ShowerHead,
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -25,18 +30,36 @@ import { trackAppelClick, trackDiagnosticClick } from '@/lib/analytics';
 const navigation = [
   { name: 'Accueil', href: '/' },
   {
-    name: 'Services',
-    href: '/services',
+    name: 'Serrurerie',
+    href: '/services/serrurerie',
     children: [
-      { name: 'Ouverture de porte', href: '/services#ouverture', icon: DoorOpen },
-      { name: 'Changement de cylindre', href: '/services#cylindre', icon: Key },
-      { name: 'Serrure multipoints', href: '/services#multipoints', icon: Shield },
-      { name: 'Sécurisation après effraction', href: '/services#securisation', icon: ShieldCheck },
-      { name: 'Tous les services', href: '/services', icon: Wrench },
+      { name: 'Ouverture de porte', href: '/services/serrurerie#ouverture', icon: DoorOpen },
+      { name: 'Changement cylindre', href: '/services/serrurerie#cylindre', icon: Key },
+      { name: 'Blindage porte', href: '/services/serrurerie#blindage', icon: ShieldCheck },
+      { name: 'Urgence serrurerie', href: '/urgence-serrurerie', icon: Clock },
+    ],
+  },
+  {
+    name: 'Électricité',
+    href: '/services/electricite',
+    children: [
+      { name: 'Panne électrique', href: '/services/electricite#panne', icon: Zap },
+      { name: 'Installation éclairage', href: '/services/electricite#eclairage', icon: Lightbulb },
+      { name: 'Tableau électrique', href: '/services/electricite#tableau', icon: Plug },
+      { name: 'Urgence électricité', href: '/urgence-electricite', icon: Clock },
+    ],
+  },
+  {
+    name: 'Plomberie',
+    href: '/services/plomberie',
+    children: [
+      { name: 'Fuite d\'eau', href: '/services/plomberie#fuite', icon: Droplets },
+      { name: 'Débouchage', href: '/services/plomberie#debouchage', icon: ShowerHead },
+      { name: 'Chauffe-eau', href: '/services/plomberie#chauffe-eau', icon: Wrench },
+      { name: 'Urgence plomberie', href: '/urgence-plomberie', icon: Clock },
     ],
   },
   { name: 'Tarifs', href: '/tarifs' },
-  { name: 'Comment ça marche', href: '/diagnostic-ia' },
   { name: 'Artisans', href: '/artisans' },
   { name: 'Contact', href: '/contact' },
 ];

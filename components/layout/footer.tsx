@@ -14,12 +14,12 @@ import {
 
 const footerLinks = {
   services: [
-    { name: 'Ouverture de porte', href: '/services#ouverture' },
-    { name: 'Changement de cylindre', href: '/services#cylindre' },
-    { name: 'Serrure multipoints', href: '/services#multipoints' },
-    { name: 'Sécurisation', href: '/services#securisation' },
-    { name: 'Blindage de porte', href: '/services#blindage' },
-    { name: 'Tous les services', href: '/services' },
+    { name: 'Serrurerie', href: '/services/serrurerie' },
+    { name: 'Électricité', href: '/services/electricite' },
+    { name: 'Plomberie', href: '/services/plomberie' },
+    { name: 'Urgence Serrurerie', href: '/urgence-serrurerie' },
+    { name: 'Urgence Électricité', href: '/urgence-electricite' },
+    { name: 'Urgence Plomberie', href: '/urgence-plomberie' },
   ],
   entreprise: [
     { name: 'À propos', href: '/a-propos' },
@@ -30,12 +30,12 @@ const footerLinks = {
     { name: 'Contact', href: '/contact' },
   ],
   villes: [
-    { name: 'Serrurier Paris', href: '/ville/paris/serrurier' },
-    { name: 'Serrurier Lyon', href: '/ville/lyon/serrurier' },
-    { name: 'Serrurier Marseille', href: '/ville/marseille/serrurier' },
-    { name: 'Serrurier Bordeaux', href: '/ville/bordeaux/serrurier' },
-    { name: 'Serrurier Toulouse', href: '/ville/toulouse/serrurier' },
-    { name: 'Toutes les villes', href: '/villes' },
+    { name: 'Paris', href: '/ville/paris/serrurier' },
+    { name: 'Lyon', href: '/ville/lyon/serrurier' },
+    { name: 'Marseille', href: '/ville/marseille/serrurier' },
+    { name: 'Bordeaux', href: '/ville/bordeaux/serrurier' },
+    { name: 'Toulouse', href: '/ville/toulouse/serrurier' },
+    { name: 'Toutes les villes', href: '/zones' },
   ],
   legal: [
     { name: 'Mentions légales', href: '/mentions-legales' },
@@ -82,8 +82,8 @@ export function Footer() {
               <span className="font-chillax font-bold text-xl">Mon Joël</span>
             </Link>
             <p className="text-slate-400 mb-6 max-w-sm">
-              Service de serrurerie intelligent avec diagnostic IA. Devis transparent, 
-              intervention rapide, tarifs justes.
+              Plateforme de dépannage : serrurerie, électricité, plomberie. 
+              Artisans de confiance, intervention rapide, tarifs transparents.
             </p>
             
             {/* Contact info */}
