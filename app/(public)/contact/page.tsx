@@ -31,8 +31,8 @@ const contactMethods = [
     icon: Phone,
     title: 'Téléphone',
     description: 'Pour une urgence ou un devis rapide',
-    value: '01 23 45 67 89',
-    href: 'tel:+33123456789',
+    value: '06 12 01 87 81',
+    href: 'tel:+33612018781',
     available: '24h/24, 7j/7',
   },
   {
@@ -203,8 +203,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-slate-900">Téléphone</h3>
-                  <a href="tel:+33123456789" className="text-joel-600 hover:underline">
-                    01 23 45 67 89
+                  <a href="tel:+33612018781" className="text-joel-600 hover:underline">
+                    06 12 01 87 81
                   </a>
                   <p className="text-sm text-slate-500 mt-1">
                     Disponible 24h/24 pour les urgences

@@ -88,11 +88,11 @@ export default function UrgenceSerrureriePage() {
 
               {/* Phone CTA - Main */}
               <a
-                href="tel:+33123456789"
+                href="tel:+33612018781"
                 className="inline-flex items-center gap-4 bg-red-500 hover:bg-red-600 text-white px-8 py-5 rounded-2xl text-2xl font-bold mb-8 transition-all hover:scale-105 shadow-xl shadow-red-500/30"
               >
                 <Phone className="h-8 w-8" />
-                01 23 45 67 89
+                06 12 01 87 81
               </a>
 
               <p className="text-slate-400 mb-8">
@@ -346,11 +346,11 @@ export default function UrgenceSerrureriePage() {
             en moins de 30 minutes.
           </p>
           <a
-            href="tel:+33123456789"
+            href="tel:+33612018781"
             className="inline-flex items-center gap-3 bg-white text-red-600 hover:bg-red-50 px-8 py-4 rounded-xl text-xl font-bold transition-all hover:scale-105"
           >
             <Phone className="h-6 w-6" />
-            01 23 45 67 89
+            06 12 01 87 81
           </a>
         </div>
       </section>

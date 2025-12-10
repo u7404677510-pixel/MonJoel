@@ -128,7 +128,7 @@ export default function ServicesPage() {
                         </Link>
                       </Button>
                       <Button size="sm" variant="outline" asChild>
-                        <a href="tel:+33123456789">
+                        <a href="tel:+33612018781">
                           <Phone className="h-4 w-4 mr-2" />
                           Appeler
                         </a>
@@ -183,9 +183,9 @@ export default function ServicesPage() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <a href="tel:+33123456789">
+                <a href="tel:+33612018781">
                   <Phone className="h-5 w-5 mr-2" />
-                  01 23 45 67 89
+                  06 12 01 87 81
                 </a>
               </Button>
             </div>

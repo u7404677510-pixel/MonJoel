@@ -411,9 +411,9 @@ export default function DiagnosticIAPage() {
               className="bg-white text-joel-600 hover:bg-joel-50"
               asChild
             >
-              <a href="tel:+33123456789" className="flex items-center gap-2">
+              <a href="tel:+33612018781" className="flex items-center gap-2">
                 <Phone className="h-5 w-5" />
-                01 23 45 67 89
+                06 12 01 87 81
               </a>
             </Button>
             <Button

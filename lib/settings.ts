@@ -23,7 +23,7 @@ export const DEFAULT_SETTINGS: Omit<SiteSetting, 'id'>[] = [
   // Contact
   {
     key: 'phone_number',
-    value: '01 23 45 67 89',
+    value: '06 12 01 87 81',
     label: 'Numéro de téléphone',
     description: 'Numéro affiché sur tout le site',
     category: 'contact',
@@ -31,7 +31,7 @@ export const DEFAULT_SETTINGS: Omit<SiteSetting, 'id'>[] = [
   },
   {
     key: 'phone_number_raw',
-    value: '+33123456789',
+    value: '+33612018781',
     label: 'Numéro de téléphone (format international)',
     description: 'Format pour les liens tel:',
     category: 'contact',

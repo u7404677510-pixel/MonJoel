@@ -35,7 +35,7 @@ export default function MentionsLegalesPage() {
             Siège social : 123 Avenue de l&apos;Innovation, 75001 Paris<br />
             RCS Paris B 123 456 789<br />
             N° TVA intracommunautaire : FR12 123456789<br />
-            Téléphone : 01 23 45 67 89<br />
+            Téléphone : 06 12 01 87 81<br />
             Email : contact@monjoel.com
           </p>
           <p>

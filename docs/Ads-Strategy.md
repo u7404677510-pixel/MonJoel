@@ -58,8 +58,8 @@ import { trackDevisClick, trackAppelClick } from '@/lib/analytics';
   Diagnostic gratuit
 </Button>
 
-<a href="tel:+33123456789" onClick={() => trackAppelClick('header')}>
-  01 23 45 67 89
+<a href="tel:+33612018781" onClick={() => trackAppelClick('header')}>
+  06 12 01 87 81
 </a>
 ```
 

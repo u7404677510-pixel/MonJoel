@@ -11,8 +11,8 @@ const DEFAULT_SETTINGS = [
   { key: 'company_name', value: 'Mon Joël SAS', label: 'Raison sociale', description: 'Nom légal de l\'entreprise', category: 'identity', type: 'text' },
   
   // Contact
-  { key: 'phone_number', value: '01 23 45 67 89', label: 'Téléphone principal', description: 'Numéro affiché sur le site', category: 'contact', type: 'phone' },
-  { key: 'phone_number_raw', value: '+33123456789', label: 'Téléphone (format tel:)', description: 'Format pour les liens cliquables', category: 'contact', type: 'phone' },
+  { key: 'phone_number', value: '06 12 01 87 81', label: 'Téléphone principal', description: 'Numéro affiché sur le site', category: 'contact', type: 'phone' },
+  { key: 'phone_number_raw', value: '+33612018781', label: 'Téléphone (format tel:)', description: 'Format pour les liens cliquables', category: 'contact', type: 'phone' },
   { key: 'email', value: 'contact@monjoel.fr', label: 'Email principal', description: 'Email de contact affiché', category: 'contact', type: 'email' },
   { key: 'email_support', value: 'support@monjoel.fr', label: 'Email support', description: 'Email pour le support client', category: 'contact', type: 'email' },
   { key: 'address', value: '', label: 'Adresse', description: 'Adresse physique (optionnel)', category: 'contact', type: 'textarea' },

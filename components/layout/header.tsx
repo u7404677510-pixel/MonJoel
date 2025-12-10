@@ -85,12 +85,12 @@ export function Header() {
           <span className="font-medium">Urgence serrurerie 24h/24, 7j/7</span>
           <span className="hidden sm:inline">—</span>
           <a
-            href="tel:+33123456789"
+            href="tel:+33612018781"
             onClick={handlePhoneClick}
             className="font-bold hover:underline flex items-center gap-1"
           >
             <Phone className="h-4 w-4" />
-            01 23 45 67 89
+            06 12 01 87 81
           </a>
         </div>
       </div>
@@ -182,7 +182,7 @@ export function Header() {
               </Link>
             </Button>
             <Button size="sm" asChild onClick={handlePhoneClick}>
-              <a href="tel:+33123456789" className="flex items-center gap-2">
+              <a href="tel:+33612018781" className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 Appeler
               </a>
@@ -255,7 +255,7 @@ export function Header() {
                   <Link href="/urgence-serrurerie">Devis gratuit</Link>
                 </Button>
                 <Button className="w-full" asChild>
-                  <a href="tel:+33123456789" className="flex items-center justify-center gap-2">
+                  <a href="tel:+33612018781" className="flex items-center justify-center gap-2">
                     <Phone className="h-4 w-4" />
                     Appeler maintenant
                   </a>

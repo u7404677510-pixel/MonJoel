@@ -89,11 +89,11 @@ export function Footer() {
             {/* Contact info */}
             <div className="space-y-3 mb-6">
               <a
-                href="tel:+33123456789"
+                href="tel:+33612018781"
                 className="flex items-center gap-3 text-slate-300 hover:text-joel-400 transition-colors"
               >
                 <Phone className="h-5 w-5 text-joel-500" />
-                <span>01 23 45 67 89</span>
+                <span>06 12 01 87 81</span>
               </a>
               <a
                 href="mailto:contact@monjoel.com"

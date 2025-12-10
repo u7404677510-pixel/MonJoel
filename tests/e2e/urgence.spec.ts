@@ -8,7 +8,7 @@ test.describe('Urgence Page', () => {
     await expect(page).toHaveTitle(/urgence/i);
     
     // Check phone number is visible
-    await expect(page.getByText('01 23 45 67 89').first()).toBeVisible();
+    await expect(page.getByText('06 12 01 87 81').first()).toBeVisible();
     
     // Check form is present
     await expect(page.getByLabel(/nom/i).first()).toBeVisible();
@@ -19,7 +19,7 @@ test.describe('Urgence Page', () => {
     await page.goto('/urgence-serrurerie');
     
     // Phone link should be visible and clickable
-    const phoneLink = page.getByRole('link', { name: /01 23 45 67 89/i }).first();
+    const phoneLink = page.getByRole('link', { name: /06 12 01 87 81/i }).first();
     await expect(phoneLink).toBeVisible();
     
     // Check href

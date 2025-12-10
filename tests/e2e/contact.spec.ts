@@ -17,7 +17,7 @@ test.describe('Contact Page', () => {
     await page.goto('/contact');
     
     // Check contact methods are displayed
-    await expect(page.getByText('01 23 45 67 89')).toBeVisible();
+    await expect(page.getByText('06 12 01 87 81')).toBeVisible();
     await expect(page.getByText('contact@monjoel.com')).toBeVisible();
   });
 
