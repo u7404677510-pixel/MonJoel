@@ -8,8 +8,6 @@ import {
   ArrowRight,
   Building2,
   Shield,
-  Clock,
-  Wallet,
   HeartHandshake,
 } from 'lucide-react';
 
