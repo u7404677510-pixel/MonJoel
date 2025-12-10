@@ -9,7 +9,6 @@ import {
   Lock,
   KeyRound,
   Blinds,
-  ArrowRight,
   CheckCircle,
   Phone,
   Sparkles,

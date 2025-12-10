@@ -9,10 +9,7 @@ import {
   AlertTriangle,
   Zap,
   CreditCard,
-  Star,
-  ArrowRight,
   Upload,
-  User,
   MessageSquare,
 } from 'lucide-react';
 

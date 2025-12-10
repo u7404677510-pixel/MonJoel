@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Section } from '@/components/layout/section';
 import { CtaSection } from '@/components/shared/cta-section';
 import { JsonLd } from '@/components/shared/json-ld';
-import { generateArticleSchema, generateCanonicalUrl } from '@/lib/seo';
+import { generateArticleSchema } from '@/lib/seo';
 import { formatDate } from '@/lib/utils';
 
 interface Props {

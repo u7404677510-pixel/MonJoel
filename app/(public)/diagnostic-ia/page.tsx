@@ -8,7 +8,6 @@ import {
   CheckCircle,
   ArrowRight,
   Shield,
-  Clock,
   Eye,
   Lock,
   Zap,

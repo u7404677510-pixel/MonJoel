@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Calendar, User, Clock } from 'lucide-react';
+import { Calendar, User, Clock } from 'lucide-react';
 
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
