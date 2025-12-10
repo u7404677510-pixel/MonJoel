@@ -35,7 +35,7 @@ export default function UrgencePage() {
             {urgences.map((u) => { const Icon = u.icon; return (
               <Link key={u.title} href={u.href}>
                 <Card className="p-8 text-center hover:shadow-xl transition-all cursor-pointer group">
-                  <div className={w-20 h-20 rounded-2xl bg-gradient-to-r {u.color} flex items-center justify-center mx-auto mb-6}>
+                  <div className={`w-20 h-20 rounded-2xl bg-gradient-to-r ${u.color} flex items-center justify-center mx-auto mb-6`}>
                     <Icon className="h-10 w-10 text-white" />
                   </div>
                   <h2 className="font-chillax text-2xl font-bold mb-2">{u.title}</h2>
