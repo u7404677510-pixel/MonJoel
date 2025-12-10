@@ -1,31 +1,33 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { auth } from '@/lib/auth';
+import { getToken } from 'next-auth/jwt';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Get token using JWT (Edge compatible)
+  const token = await getToken({ 
+    req: request,
+    secret: process.env.AUTH_SECRET,
+  });
+
   // Admin routes protection
   if (pathname.startsWith('/admin')) {
-    const session = await auth();
-    
-    if (!session?.user) {
+    if (!token) {
       const loginUrl = new URL('/login', request.url);
       loginUrl.searchParams.set('callbackUrl', pathname);
       return NextResponse.redirect(loginUrl);
     }
 
     // Check for admin role
-    if (session.user.role !== 'ADMIN') {
+    if (token.role !== 'ADMIN') {
       return NextResponse.redirect(new URL('/', request.url));
     }
   }
 
   // Protected dashboard routes
   if (pathname.startsWith('/dashboard')) {
-    const session = await auth();
-    
-    if (!session?.user) {
+    if (!token) {
       const loginUrl = new URL('/login', request.url);
       loginUrl.searchParams.set('callbackUrl', pathname);
       return NextResponse.redirect(loginUrl);
@@ -41,4 +43,3 @@ export const config = {
     '/dashboard/:path*',
   ],
 };
-

@@ -10,7 +10,6 @@ import {
   PenLine,
   ExternalLink,
   Plus,
-  Search,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
