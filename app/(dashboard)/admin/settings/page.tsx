@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import {
-  Settings,
   Phone,
   Mail,
   Globe,
@@ -14,12 +13,7 @@ import {
   AlertCircle,
   Loader2,
   Building,
-  Clock,
-  Star,
-  MessageSquare,
-  Image as ImageIcon,
   Type,
-  Zap,
   Shield,
 } from 'lucide-react';
 
