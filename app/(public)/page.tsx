@@ -13,6 +13,8 @@ import {
   Key,
   DoorOpen,
   ShieldCheck,
+  Camera,
+  FileText,
   Truck,
   MapPin,
 } from 'lucide-react';
