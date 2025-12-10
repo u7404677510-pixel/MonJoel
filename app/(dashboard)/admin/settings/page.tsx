@@ -279,6 +279,7 @@ export default function AdminSettingsPage() {
         <TabsList className="flex flex-wrap h-auto gap-1 p-1 bg-slate-100/80">
           {categories.map((category) => {
             const info = CATEGORY_INFO[category];
+            if (!info) return null;
             const Icon = info.icon;
             const hasSettings = settingsByCategory[category]?.length > 0;
             if (!hasSettings && category !== activeTab) return null;
@@ -297,7 +298,9 @@ export default function AdminSettingsPage() {
 
         {categories.map((category) => {
           const info = CATEGORY_INFO[category];
+          if (!info) return null;
           const categorySettings = settingsByCategory[category] || [];
+          const CategoryIcon = info.icon;
 
           return (
             <TabsContent key={category} value={category} className="mt-6">
@@ -305,7 +308,7 @@ export default function AdminSettingsPage() {
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <div className="p-2 rounded-lg bg-primary/10">
-                      <info.icon className="h-4 w-4 text-primary" />
+                      <CategoryIcon className="h-4 w-4 text-primary" />
                     </div>
                     {info.label}
                   </CardTitle>
