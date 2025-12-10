@@ -355,7 +355,7 @@ export default function DiagnosticIAPage() {
 
           <div className="prose prose-slate max-w-none">
             <p className="text-lg text-slate-600 mb-6">
-              Notre intelligence artificielle a été entraînée sur des milliers d'images de serrures 
+              Notre intelligence artificielle a été entraînée sur des milliers d&apos;images de serrures 
               et de situations de serrurerie. Elle est capable de :
             </p>
 
@@ -369,13 +369,13 @@ export default function DiagnosticIAPage() {
               <li className="flex items-start gap-3">
                 <CheckCircle className="h-5 w-5 text-success-500 shrink-0 mt-0.5" />
                 <span className="text-slate-700">
-                  Reconnaître la marque et le modèle quand c'est possible
+                  Reconnaître la marque et le modèle quand c&apos;est possible
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle className="h-5 w-5 text-success-500 shrink-0 mt-0.5" />
                 <span className="text-slate-700">
-                  Évaluer la complexité de l'intervention
+                  Évaluer la complexité de l&apos;intervention
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -389,7 +389,7 @@ export default function DiagnosticIAPage() {
             <p className="text-slate-600">
               Le résultat est une estimation fiable qui vous permet de savoir à quoi vous attendre 
               avant de faire intervenir un artisan. Si vous validez le devis, un serrurier de notre 
-              réseau se déplace pour réaliser l'intervention au prix convenu.
+              réseau se déplace pour réaliser l&apos;intervention au prix convenu.
             </p>
           </div>
         </div>
@@ -402,7 +402,7 @@ export default function DiagnosticIAPage() {
             Besoin d&apos;aide maintenant ?
           </h2>
           <p className="text-joel-100 mb-8 max-w-xl mx-auto">
-            Si vous êtes en situation d'urgence, appelez-nous directement. 
+            Si vous êtes en situation d&apos;urgence, appelez-nous directement. 
             Un conseiller vous répond immédiatement.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,5 +1,5 @@
 import type { PricingEstimate, PricingBreakdownItem, EtaEstimate } from '@/types';
-import { isNightHours, isWeekend, calculatePriceWithSurcharges } from '@/lib/utils';
+import { isNightHours, isWeekend } from '@/lib/utils';
 
 // ===========================================
 // Pricing Engine

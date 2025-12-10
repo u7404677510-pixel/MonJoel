@@ -177,7 +177,7 @@ export function FeaturedTestimonial({ testimonial }: { testimonial?: Testimonial
         </div>
 
         <blockquote className="text-xl md:text-2xl font-medium mb-8 text-balance">
-          "{featured.comment}"
+          &ldquo;{featured.comment}&rdquo;
         </blockquote>
 
         <div className="flex items-center gap-4">

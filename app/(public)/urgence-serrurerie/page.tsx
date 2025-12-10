@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import {
   Phone,
   Clock,
@@ -285,9 +284,7 @@ export default function UrgenceSerrureriePage() {
                 title: 'Problème résolu',
                 description: 'Intervention professionnelle, paiement sécurisé après le travail.',
               },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
+            ].map((item) => (
                 <div key={item.step} className="flex gap-6">
                   <div className="shrink-0">
                     <div className="w-12 h-12 rounded-full bg-joel-500 text-white flex items-center justify-center font-bold">
@@ -299,8 +296,7 @@ export default function UrgenceSerrureriePage() {
                     <p className="text-slate-600">{item.description}</p>
                   </div>
                 </div>
-              );
-            })}
+            ))}
           </div>
         </div>
       </Section>

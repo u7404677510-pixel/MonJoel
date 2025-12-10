@@ -7,7 +7,6 @@ import {
   Shield,
   Phone,
   Sparkles,
-  ArrowRight,
   CheckCircle,
 } from 'lucide-react';
 
@@ -27,8 +26,8 @@ import {
   generateCityIntro,
   CITIES,
 } from '@/lib/growth/locations';
-import { getAllServices, getPopularServices } from '@/lib/services';
-import { generateCityServiceSchema, generateCanonicalUrl } from '@/lib/seo';
+import { getPopularServices } from '@/lib/services';
+import { generateCityServiceSchema } from '@/lib/seo';
 import { formatPrice } from '@/lib/utils';
 
 interface Props {
