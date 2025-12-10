@@ -24,7 +24,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Section, SectionHeader } from '@/components/layout/section';
-import { CtaSection } from '@/components/shared/cta-section';
 
 export const metadata: Metadata = {
   title: 'Diagnostic IA Serrurerie - Devis Gratuit Instantané | Mon Joël',
