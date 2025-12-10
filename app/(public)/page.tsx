@@ -106,14 +106,14 @@ export default function HomePage() {
         
         {/* Decorative blurs */}
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-joel-400/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-accent-300/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-yellow-300/20 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="text-white">
-              <Badge variant="joel" className="mb-6 bg-accent-300/20 text-accent-300 border border-accent-300/40">
-                <Clock className="h-3 w-3 mr-1 text-accent-300" />
+              <Badge variant="joel" className="mb-6 bg-yellow-300/20 text-yellow-300 border border-yellow-300/40">
+                <Clock className="h-3 w-3 mr-1 text-yellow-300" />
                 Disponible 24h/24
               </Badge>
 
@@ -151,13 +151,13 @@ export default function HomePage() {
                 <div className="flex items-center gap-2 text-sm text-joel-200">
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="h-4 w-4 text-accent-300 fill-accent-300" />
+                      <Star key={i} className="h-4 w-4 text-yellow-300 fill-yellow-300" />
                     ))}
                   </div>
                   <span>4.9/5 sur 2 500+ avis</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-joel-200">
-                  <CheckCircle className="h-4 w-4 text-accent-300" />
+                  <CheckCircle className="h-4 w-4 text-yellow-300" />
                   <span>+15 000 interventions</span>
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function HomePage() {
               </div>
 
               {/* Floating badge - Yellow accent */}
-              <div className="absolute -bottom-4 -left-4 bg-accent-300 text-joel-950 px-5 py-3 rounded-xl shadow-lg font-semibold flex items-center gap-2">
+              <div className="absolute -bottom-4 -left-4 bg-yellow-300 text-joel-950 px-5 py-3 rounded-xl shadow-lg font-semibold flex items-center gap-2">
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
                   <span className="font-semibold">Intervention en 30 min</span>
@@ -221,7 +221,7 @@ export default function HomePage() {
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-joel-500 text-white mb-4 shadow-lg shadow-joel-500/30">
                     <Icon className="h-8 w-8" />
                   </div>
-                  <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/3 w-7 h-7 rounded-full bg-accent-300 border-2 border-white shadow-md flex items-center justify-center text-xs font-bold text-joel-950">
+                  <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/3 w-7 h-7 rounded-full bg-yellow-300 border-2 border-white shadow-md flex items-center justify-center text-xs font-bold text-joel-950">
                     {step.step}
                   </div>
                   <h3 className="font-chillax text-lg font-semibold text-slate-900 mb-2">
@@ -235,7 +235,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button size="lg" className="bg-accent-300 hover:bg-accent-400 text-joel-950" asChild>
+          <Button size="lg" className="bg-yellow-300 hover:bg-yellow-400 text-joel-950" asChild>
             <Link href="/urgence-serrurerie">
               Demander une intervention
               <ArrowRight className="h-4 w-4 ml-2" />
@@ -255,7 +255,7 @@ export default function HomePage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {popularServices.map((service) => (
             <Card key={service.id} className="p-6 hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-joel-100 to-accent-100 flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-joel-100 to-yellow-100 flex items-center justify-center mb-4">
                 {service.id === 'ouverture-porte' && <DoorOpen className="h-6 w-6 text-joel-600" />}
                 {service.id === 'changement-cylindre' && <Key className="h-6 w-6 text-joel-600" />}
                 {service.id === 'securisation-effraction' && <ShieldCheck className="h-6 w-6 text-joel-600" />}

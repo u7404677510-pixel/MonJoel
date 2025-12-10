@@ -37,8 +37,8 @@ const config: Config = {
           900: '#382b53',
           950: '#231a35',
         },
-        // Accent Yellow
-        accent: {
+        // Yellow accent (FEDA52)
+        yellow: {
           50: '#fffbeb',
           100: '#fff3c4',
           200: '#ffe588',
