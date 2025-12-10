@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================================
+   Mon Joël - Design System
+   =========================================== */
+
+/* ---------- CSS Variables (Design Tokens) ---------- */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 260 33% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 260 33% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 33% 15%;
+    --primary: 260 33% 49%;          /* #7055A7 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 261 43% 62%;        /* #9274CA */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 260 20% 96%;
+    --muted-foreground: 260 15% 46%;
+    --accent: 47 99% 66%;            /* #FEDA52 */
+    --accent-foreground: 260 33% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 260 20% 91%;
+    --input: 260 20% 91%;
+    --ring: 260 33% 49%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 260 40% 6%;
+    --foreground: 260 10% 95%;
+    --card: 260 40% 8%;
+    --card-foreground: 260 10% 95%;
+    --popover: 260 40% 8%;
+    --popover-foreground: 260 10% 95%;
+    --primary: 260 33% 49%;          /* #7055A7 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 261 43% 62%;        /* #9274CA */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 260 32% 17%;
+    --muted-foreground: 260 15% 65%;
+    --accent: 47 99% 66%;            /* #FEDA52 */
+    --accent-foreground: 260 33% 15%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 260 32% 17%;
+    --input: 260 32% 17%;
+    --ring: 260 33% 49%;
+  }
+}
+
+/* ---------- Base Styles ---------- */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Headings use Chillax */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-chillax font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-joel-500/20;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-joel-500 ring-offset-2 ring-offset-background;
+  }
+}
+
+/* ---------- Components ---------- */
+@layer components {
+  /* CTA Button styles */
+  .btn-cta {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 
+           font-semibold text-white bg-joel-500 rounded-xl
+           transition-all duration-300 
+           hover:bg-joel-600 hover:shadow-glow hover:scale-105
+           active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-cta-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 
+           font-semibold text-joel-500 bg-transparent rounded-xl
+           border-2 border-joel-500
+           transition-all duration-300 
+           hover:bg-joel-500 hover:text-white hover:shadow-glow
+           active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 
+           font-semibold text-slate-800 bg-slate-100 rounded-xl
+           transition-all duration-300 
+           hover:bg-slate-200
+           active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-slate-900/80 backdrop-blur-lg border border-white/10;
+  }
+
+  /* Card styles */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-joel-500 to-joel-600 bg-clip-text text-transparent;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Animated underline */
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 
+           after:w-0 after:bg-joel-500 after:transition-all after:duration-300
+           hover:after:w-full;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full;
+  }
+
+  .badge-primary {
+    @apply badge bg-joel-100 text-joel-700;
+  }
+
+  .badge-success {
+    @apply badge bg-success-100 text-success-700;
+  }
+
+  .badge-trust {
+    @apply badge bg-trust-100 text-trust-700;
+  }
+
+  /* Input styles */
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border border-slate-200 rounded-xl
+           transition-all duration-200
+           placeholder:text-slate-400
+           focus:border-joel-500 focus:ring-2 focus:ring-joel-500/20 focus:outline-none
+           disabled:bg-slate-50 disabled:cursor-not-allowed;
+  }
+
+  /* Hero section background */
+  .hero-gradient {
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900;
+  }
+
+  /* Trust badges */
+  .trust-badge {
+    @apply flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg 
+           border border-white/20 text-white text-sm;
+  }
+}
+
+/* ---------- Utilities ---------- */
+@layer utilities {
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animation delays */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+
+  /* Shimmer effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+/* ---------- Custom Scrollbar (when visible) ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-slate-800;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-slate-600;
+}
+
+/* ---------- Page transition animations ---------- */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.5s ease-out;
+}
+

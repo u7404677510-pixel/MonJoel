@@ -1,0 +1,518 @@
+// ===========================================
+// Mon Joël - Schéma de Base de Données
+// ===========================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===========================================
+// Auth & Users
+// ===========================================
+
+enum UserRole {
+  CLIENT
+  ARTISAN
+  TECH
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  passwordHash  String?
+  phoneHash     String?
+  role          UserRole  @default(CLIENT)
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLoginAt   DateTime?
+
+  // Relations Auth.js
+  accounts Account[]
+  sessions Session[]
+
+  // Relations métier
+  customer   Customer?
+  technician Technician?
+  artisan    Artisan?
+  events     Event[]
+
+  @@index([email])
+  @@index([role])
+  @@map("users")
+}
+
+// Auth.js required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ===========================================
+// Customers & Addresses
+// ===========================================
+
+model Customer {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  primaryAddressId String?
+  notes            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  addresses Address[]
+  requests  Request[]
+
+  @@map("customers")
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  customerId String
+  line1      String
+  line2      String?
+  zip        String
+  city       String
+  region     String?
+  country    String   @default("France")
+  lat        Float?
+  lng        Float?
+  isPrimary  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([zip])
+  @@index([city])
+  @@map("addresses")
+}
+
+// ===========================================
+// Requests, Tickets & Media
+// ===========================================
+
+enum RequestChannel {
+  WEB
+  ADS
+  SEO
+  DIRECT
+  PARTNER
+}
+
+enum RequestStatus {
+  NEW
+  ANALYZING
+  QUOTED
+  ACCEPTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model Request {
+  id          String         @id @default(cuid())
+  customerId  String?
+  status      RequestStatus  @default(NEW)
+  channel     RequestChannel @default(WEB)
+  description String         @db.Text
+  zip         String
+  city        String
+  contactName String?
+  contactPhone String?
+  contactEmail String?
+  sourceUtm   Json?          // { source, medium, campaign, term, content }
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  customer Customer? @relation(fields: [customerId], references: [id])
+  media    Media[]
+  ticket   Ticket?
+
+  @@index([createdAt])
+  @@index([zip])
+  @@index([status])
+  @@index([channel])
+  @@map("requests")
+}
+
+enum MediaType {
+  PHOTO
+  VIDEO
+}
+
+model Media {
+  id           String    @id @default(cuid())
+  requestId    String
+  type         MediaType
+  url          String
+  thumbnailUrl String?
+  fileName     String?
+  fileSize     Int?
+  createdAt    DateTime  @default(now())
+
+  request Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  @@map("media")
+}
+
+// ===========================================
+// AI Analysis & Tickets
+// ===========================================
+
+model Ticket {
+  id           String   @id @default(cuid())
+  requestId    String   @unique
+  lockType     String?  // Type de serrure identifié
+  brand        String?  // Marque identifiée
+  confidence   Float?   // Confiance IA (0-1)
+  pricingJson  Json?    // Estimation prix { min, max, breakdown }
+  etaJson      Json?    // Estimation temps { min, max, unit }
+  riskFlags    Json?    // Drapeaux de risque ["urgent", "complex", etc.]
+  aiNotes      String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  request Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  quotes  Quote[]
+
+  @@map("tickets")
+}
+
+// ===========================================
+// Quotes & Jobs
+// ===========================================
+
+enum QuoteStatus {
+  DRAFT
+  SENT
+  SIGNED
+  PAID
+  CANCELLED
+  REFUNDED
+}
+
+model Quote {
+  id            String      @id @default(cuid())
+  ticketId      String
+  status        QuoteStatus @default(DRAFT)
+  totalHt       Float       // Prix HT en centimes
+  totalTtc      Float       // Prix TTC en centimes
+  currency      String      @default("EUR")
+  breakdownJson Json?       // Détail des lignes
+  validUntil    DateTime?
+  sentAt        DateTime?
+  signedAt      DateTime?
+  paidAt        DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  job    Job?
+
+  @@index([status])
+  @@map("quotes")
+}
+
+enum JobState {
+  PENDING
+  ASSIGNED
+  EN_ROUTE
+  ARRIVED
+  WORKING
+  DONE
+  CANCELLED
+}
+
+model Job {
+  id           String    @id @default(cuid())
+  quoteId      String    @unique
+  technicianId String?
+  state        JobState  @default(PENDING)
+  etaMin       Int?      // Minutes estimées
+  scheduledAt  DateTime?
+  startedAt    DateTime?
+  endedAt      DateTime?
+  notes        String?   @db.Text
+  rating       Int?      // 1-5
+  feedback     String?   @db.Text
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  quote      Quote       @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  technician Technician? @relation(fields: [technicianId], references: [id])
+
+  @@index([state, technicianId])
+  @@index([scheduledAt])
+  @@map("jobs")
+}
+
+// ===========================================
+// Technicians & Artisans
+// ===========================================
+
+model Technician {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  artisanId String
+  skills    Json?    // ["cylinder", "multipoint", "safe", etc.]
+  zones     Json?    // ["75001", "75002", etc.]
+  rating    Float    @default(5.0)
+  jobsCount Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  artisan Artisan @relation(fields: [artisanId], references: [id])
+  jobs    Job[]
+
+  @@index([artisanId])
+  @@index([isActive])
+  @@map("technicians")
+}
+
+model Artisan {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  companyName    String
+  siret          String   @unique
+  ibanLast4      String?
+  payoutDelayDays Int     @default(7)
+  billingEmail   String?
+  legalJson      Json?    // { address, rcs, capital, etc. }
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  technicians     Technician[]
+  inventoryItems  InventoryItem[]
+
+  @@index([siret])
+  @@map("artisans")
+}
+
+// ===========================================
+// Inventory
+// ===========================================
+
+model InventoryItem {
+  id        String   @id @default(cuid())
+  artisanId String
+  sku       String
+  label     String
+  brand     String?
+  lengthMm  Int?
+  quantity  Int      @default(0)
+  unitCost  Float    // En centimes
+  unitPrice Float    // Prix de vente en centimes
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  artisan Artisan @relation(fields: [artisanId], references: [id], onDelete: Cascade)
+
+  @@unique([artisanId, sku])
+  @@map("inventory_items")
+}
+
+// ===========================================
+// Events (Audit Log)
+// ===========================================
+
+model Event {
+  id        String   @id @default(cuid())
+  type      String   // "request_created", "quote_sent", "job_completed", etc.
+  userId    String?
+  payload   Json?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([type, createdAt])
+  @@index([userId])
+  @@map("events")
+}
+
+// ===========================================
+// SEO & Content
+// ===========================================
+
+model SeoPage {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  city        String
+  service     String
+  title       String
+  description String   @db.Text
+  contentMd   String   @db.Text
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([city, service])
+  @@index([isPublished])
+  @@map("seo_pages")
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  name        String
+  city        String?
+  rating      Int      // 1-5
+  comment     String   @db.Text
+  avatarUrl   String?
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  @@index([isPublished, rating])
+  @@map("testimonials")
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String    @db.Text
+  contentMd   String    @db.Text
+  category    String?
+  coverImage  String?
+  author      String    @default("Mon Joël")
+  isPublished Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([isPublished, publishedAt])
+  @@index([category])
+  @@map("blog_posts")
+}
+
+// ===========================================
+// Pricebook
+// ===========================================
+
+model PricebookItem {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  label         String
+  description   String?  @db.Text
+  category      String   // "ouverture", "cylindre", "multipoint", etc.
+  basePrice     Float    // Prix de base TTC en centimes
+  nightSurcharge Float   @default(50) // % de surcharge nuit
+  weekendSurcharge Float @default(30) // % de surcharge weekend
+  urgentSurcharge Float  @default(25) // % de surcharge urgence
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([category])
+  @@index([isActive])
+  @@map("pricebook_items")
+}
+
+// ===========================================
+// Contact Form Submissions
+// ===========================================
+
+model ContactSubmission {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  phone        String?
+  subject      String
+  message      String   @db.Text
+  consentRgpd  Boolean  @default(true)
+  sourceUtm    Json?
+  isProcessed  Boolean  @default(false)
+  processedAt  DateTime?
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([isProcessed])
+  @@map("contact_submissions")
+}
+
+// ===========================================
+// Artisan Applications
+// ===========================================
+
+model ArtisanApplication {
+  id           String   @id @default(cuid())
+  companyName  String
+  siret        String
+  contactName  String
+  email        String
+  phone        String
+  zones        String   // Zones desservies (texte libre)
+  message      String?  @db.Text
+  status       String   @default("PENDING") // PENDING, CONTACTED, APPROVED, REJECTED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([status])
+  @@map("artisan_applications")
+}
+
+// ===========================================
+// Site Settings (Admin Configurable)
+// ===========================================
+
+model SiteSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String   @db.Text
+  label       String   // Human-readable label
+  description String?  // Help text
+  category    String   @default("general") // general, contact, seo, social
+  type        String   @default("text") // text, textarea, phone, email, url, number, boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@map("site_settings")
+}
