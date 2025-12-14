@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Poppins, Space_Grotesk } from 'next/font/google';
+import { Poppins, Inter } from 'next/font/google';
 import Script from 'next/script';
 
 import '@/styles/globals.css';
@@ -15,10 +15,10 @@ const poppins = Poppins({
   display: 'swap',
 });
 
-// Using Space Grotesk as display font (similar to Chillax)
-const spaceGrotesk = Space_Grotesk({
+// Using Inter as display font (clean and modern)
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-chillax',
   display: 'swap',
 });
@@ -120,7 +120,7 @@ export default function RootLayout({
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? 'G-XXXXXXXXXX';
 
   return (
-    <html lang="fr" className={`${poppins.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="fr" className={`${poppins.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
