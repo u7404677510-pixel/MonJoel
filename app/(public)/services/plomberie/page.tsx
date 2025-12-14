@@ -1,50 +1,94 @@
 ﻿import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Phone, ArrowRight, Droplets, ShowerHead, Thermometer, Wrench } from 'lucide-react';
+import { Phone, ArrowRight, Droplets, Shield, Clock, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Section, SectionHeader } from '@/components/layout/section';
 import { CtaSection } from '@/components/shared/cta-section';
+import { PriceSearch } from '@/components/shared/price-search';
+import { prices } from '@/lib/prices';
 
 export const metadata: Metadata = {
-  title: 'Plomberie - Plombier de confiance 24h/24',
-  description: 'Services plomberie professionnels : fuite d eau, dÃ©bouchage, chauffe-eau, sanitaires. Plombiers certifiÃ©s, intervention rapide.',
+  title: 'Tarifs Plomberie - Tous nos prix',
+  description: 'Découvrez nos tarifs plomberie transparents : fuite, débouchage, chauffe-eau. Prix fixes, déplacement inclus. Devis gratuit.',
 };
 
-const services = [
-  { id: 'fuite', icon: Droplets, title: 'Fuite d eau', desc: 'DÃ©tection et rÃ©paration de fuites.', price: '89â‚¬' },
-  { id: 'debouchage', icon: ShowerHead, title: 'DÃ©bouchage', desc: 'Canalisations, WC, Ã©viers, douches.', price: '79â‚¬' },
-  { id: 'chauffe-eau', icon: Thermometer, title: 'Chauffe-eau', desc: 'Installation, rÃ©paration, remplacement.', price: 'Sur devis' },
-  { id: 'sanitaires', icon: Wrench, title: 'Sanitaires', desc: 'Installation WC, lavabo, douche.', price: '99â‚¬' },
+const benefits = [
+  { icon: Clock, title: 'Intervention 30 min', description: 'En zone urbaine' },
+  { icon: Shield, title: 'Plombiers certifiés', description: 'Assurés et qualifiés' },
+  { icon: CheckCircle, title: 'Prix tout compris', description: 'Déplacement inclus' },
 ];
 
 export default function PlomberieServicesPage() {
+  const category = prices.categories.plomberie;
+
   return (
     <>
-      <section className="relative bg-gradient-to-br from-blue-500 via-cyan-600 to-cyan-700 pt-32 pb-20">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-500 via-cyan-600 to-cyan-700 pt-32 pb-16">
         <div className="container mx-auto px-4 text-center text-white">
-          <Badge className="mb-6 bg-white/20 text-white border border-white/40"><Droplets className="h-3 w-3 mr-1" />Plomberie</Badge>
-          <h1 className="font-chillax text-4xl md:text-5xl font-bold mb-6">Services de <span className="text-cyan-200">Plomberie</span></h1>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Plombiers professionnels 24h/24 pour urgences, installation et rÃ©paration.</p>
+          <Badge className="mb-6 bg-white/20 text-white border border-white/40">
+            <Droplets className="h-3 w-3 mr-1" />
+            {category.services.length} interventions
+          </Badge>
+          <h1 className="font-chillax text-4xl md:text-5xl font-bold mb-6">
+            Tarifs <span className="text-cyan-200">Plomberie</span>
+          </h1>
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            Prix transparents pour toutes nos interventions de plomberie. Devis gratuit, sans engagement.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white hover:bg-blue-50 text-blue-600" asChild><a href="tel:+33612018781"><Phone className="h-5 w-5 mr-2" />06 12 01 87 81</a></Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild><Link href="/urgence-plomberie">Urgence<ArrowRight className="h-4 w-4 ml-2" /></Link></Button>
+            <Button size="lg" className="bg-white hover:bg-blue-50 text-blue-600" asChild>
+              <a href="tel:+33612018781">
+                <Phone className="h-5 w-5 mr-2" />
+                06 12 01 87 81
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+              <Link href="/urgence-plomberie">
+                Urgence
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
-      <Section>
-        <SectionHeader badge="Prestations" title="Nos services plomberie" />
-        <div className="grid md:grid-cols-2 gap-6">
-          {services.map((s) => { const Icon = s.icon; return (
-            <Card key={s.id} id={s.id} className="p-6"><div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><Icon className="h-6 w-6 text-blue-600" /></div>
-              <div><div className="flex items-center gap-2 mb-2"><h3 className="font-chillax text-lg font-bold">{s.title}</h3><Badge variant="secondary" className="bg-blue-100 text-blue-700">Ã€ partir de {s.price}</Badge></div><p className="text-slate-600">{s.desc}</p></div>
-            </div></Card>
-          ); })}
+
+      {/* Benefits */}
+      <Section background="light" className="py-8">
+        <div className="grid grid-cols-3 gap-4">
+          {benefits.map((b) => {
+            const Icon = b.icon;
+            return (
+              <div key={b.title} className="text-center">
+                <Icon className="h-6 w-6 text-blue-600 mx-auto mb-2" />
+                <p className="font-medium text-sm text-slate-900">{b.title}</p>
+                <p className="text-xs text-slate-500">{b.description}</p>
+              </div>
+            );
+          })}
         </div>
       </Section>
-      <CtaSection title="Besoin d'un plombier ?" description="Artisans disponibles 24h/24." />
+
+      {/* Price List */}
+      <Section>
+        <SectionHeader
+          badge="Nos tarifs"
+          title="Toutes nos interventions plomberie"
+          description="Prix fixes incluant déplacement, fournitures et nettoyage."
+        />
+        <PriceSearch 
+          services={category.services} 
+          category="plomberie"
+          colorClass="bg-blue-100 text-blue-700"
+        />
+      </Section>
+
+      {/* CTA */}
+      <CtaSection
+        title="Besoin d'un plombier ?"
+        description="Devis gratuit en 2 minutes. Artisans disponibles 24h/24."
+      />
     </>
   );
 }
